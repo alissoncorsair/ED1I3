@@ -1,0 +1,130 @@
+#include <iostream>
+using namespace std;
+
+const int NUM_FILEIRAS = 15;
+const int NUM_POLTRONAS = 40;
+const char *POLTRONAS[15][40];
+const double PRECO_FILEIRAS_1_A_5 = 50.00;
+const double PRECO_FILEIRAS_6_A_10 = 30.00;
+const double PRECO_FILEIRAS_11_A_15 = 15.00;
+int OCUPADOS = 0;
+int FATURAMENTO = 0;
+
+void exibirPoltronas()
+{
+    for (int i = 0; i < NUM_FILEIRAS; i++)
+    {
+        for (int j = 0; j < NUM_POLTRONAS; j++)
+        {
+            cout << POLTRONAS[i][j];
+        }
+        cout << endl;
+    }
+}
+
+void reserva()
+{
+    cout << "Insira a fileira e a poltrona desejada!" << endl;
+    cout << "Fileira: ";
+    int fileira;
+    cin >> fileira;
+    if (fileira < 0 || fileira > NUM_FILEIRAS - 1)
+    {
+        cout << "Fileira inválida!" << endl;
+        return;
+    }
+    cout << "Poltrona: ";
+    int poltrona;
+    cin >> poltrona;
+    if (poltrona < 0 || poltrona > NUM_POLTRONAS - 1)
+    {
+        cout << "Poltrona inválida!" << endl;
+        return;
+    }
+    const string poltronaSelecionada = POLTRONAS[fileira][poltrona];
+    if (poltronaSelecionada == ".")
+    {
+        cout << "Poltrona disponível!" << endl;
+        cout << "Deseja reservar? (S/N)" << endl;
+        char opcao;
+        cin >> opcao;
+        if (opcao == 'S' || opcao == 's')
+        {
+            POLTRONAS[fileira][poltrona] = "#";
+            OCUPADOS++;
+            if (fileira >= 0 && fileira <= 4)
+            {
+                FATURAMENTO += PRECO_FILEIRAS_1_A_5;
+            }
+            else if (fileira >= 5 && fileira <= 9)
+            {
+                FATURAMENTO += PRECO_FILEIRAS_6_A_10;
+            }
+            else if (fileira >= 10 && fileira <= 14)
+            {
+                FATURAMENTO += PRECO_FILEIRAS_11_A_15;
+            }
+            cout << "Poltrona reservada com sucesso!" << endl
+                 << endl;
+        }
+        else
+        {
+            cout << "Operação cancelada!" << endl
+                 << endl;
+        }
+    }
+    else
+    {
+        cout << "Poltrona indisponível!" << endl
+             << endl;
+    }
+}
+
+void faturamento()
+{
+    cout << "Poltronas ocupadas: " << OCUPADOS << endl;
+    cout << "Faturamento: R$ " << FATURAMENTO << endl
+         << endl;
+}
+
+int main()
+{
+
+    for (int i = 0; i < NUM_FILEIRAS; i++)
+    {
+        for (int j = 0; j < NUM_POLTRONAS; j++)
+        {
+            POLTRONAS[i][j] = ".";
+        }
+    }
+
+    while (true)
+    {
+        cout << "0 - Finalizar" << endl;
+        cout << "1 - Reservar poltrona" << endl;
+        cout << "2 - Mapa de ocupação" << endl;
+        cout << "3 - Faturamento" << endl;
+        cout << "Digite a opção desejada: ";
+        int opcao;
+        cin >> opcao;
+        switch (opcao)
+        {
+        case 0:
+            return 0;
+        case 1:
+            reserva();
+            break;
+        case 2:
+            exibirPoltronas();
+            break;
+        case 3:
+            faturamento();
+            break;
+        default:
+            cout << "Opção inválida!" << endl;
+            break;
+        }
+    }
+
+    return 0;
+}
