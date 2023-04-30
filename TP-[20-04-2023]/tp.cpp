@@ -173,6 +173,10 @@ Lista *options(int opcao, Lista *lista)
         print(lista);
         cout << endl;
         break;
+    default:
+        cout << "Opcao invalida!" << endl;
+        cout << endl;
+        break;
     }
 
     return lista;
@@ -180,22 +184,6 @@ Lista *options(int opcao, Lista *lista)
 
 int main(int argc, char **argv)
 {
-
-    Funcionario *funcionario1 = new Funcionario();
-    funcionario1->prontuario = 1;
-    funcionario1->nome = "Joao";
-    funcionario1->salario = 1000.0;
-
-    Funcionario *funcionario2 = new Funcionario();
-    funcionario2->prontuario = 2;
-    funcionario2->nome = "Maria";
-    funcionario2->salario = 2000.0;
-
-    Funcionario *funcionario3 = new Funcionario();
-    funcionario3->prontuario = 3;
-    funcionario3->nome = "Jose";
-    funcionario3->salario = 3000.0;
-
     Lista *minhaLista;
     int opcao = -1;
     minhaLista = init();
@@ -204,29 +192,6 @@ int main(int argc, char **argv)
         opcao = optionsMessage();
         minhaLista = options(opcao, minhaLista);
     } while (opcao != 0);
-    // minhaLista = options(minhaLista);
-    // print(minhaLista);
-    // minhaLista = insert(minhaLista, funcionario1);
-    // minhaLista = insert(minhaLista, funcionario2);
-    // minhaLista = insert(minhaLista, funcionario3);
-    // print(minhaLista);
-
-    // Lista *procurado;
-    // procurado = find(minhaLista, funcionario1);
-    // if (procurado != NULL)
-    // {
-    //     cout << "Achou" << endl;
-    //     cout << procurado->funcionario->nome << endl;
-    //     cout << endl;
-    // }
-    // else
-    // {
-    //     cout << "Năo achou" << endl;
-    //     cout << endl;
-    // }
-
-    // minhaLista = remove(minhaLista, funcionario2);
-    // print(minhaLista);
 
     return 0;
 }
