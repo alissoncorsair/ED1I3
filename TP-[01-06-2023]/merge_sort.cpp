@@ -1,6 +1,11 @@
 #include <iostream>
 using namespace std;
 
+/* 
+    Alisson de Sousa Vieira
+    Leonardo de Fontes
+*/
+
 
 void merge(int* arr, int left, int mid, int right) {
     int n1 = mid - left + 1;  

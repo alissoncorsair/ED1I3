@@ -1,6 +1,10 @@
 #include <iostream>
 using namespace std;
 
+/* 
+    Alisson de Sousa Vieira
+    Leonardo de Fontes
+*/
 
 void insertionSort(int* arr, int n) {
     for (int i = 1; i < n; i++) {

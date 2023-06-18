@@ -1,6 +1,11 @@
 #include <iostream>
 using namespace std;
 
+/* 
+    Alisson de Sousa Vieira
+    Leonardo de Fontes
+*/
+
 int partition(int* arr, int low, int high) {
     int pivot = arr[high];
     int i = low - 1;
